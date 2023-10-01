@@ -27,29 +27,19 @@ pattern(10): should return the following:
  */
 
 function pattern(n) {
-  let output = "";
+  // If n is less than 1, return an empty string
+  if (n < 1) return "";
 
-  // Outer loop: Iterate from 1 to "n" (inclusive)
-  for (let i = 1; i <= n; i++) {
-    // Inner loop: Iterate from 1 to "i" (inclusive)
-    for (let j = 1; j <= i; j++) {
-      // Check if "j" is 1 (the first iteration in the inner loop)
-      if (j === 1) {
-        // If it's the first iteration, add "1" to the "output"
-        output += "1";
-      } else {
-        // If it's not the first iteration, add "*" followed by "i" (current outer loop value) to the "output"
-        output += "*" + (i === j ? i : "");
-      }
-    }
+  // Initialize the output string with the first row, which is '1'
+  var output = "1";
 
-    /** After each inner loop completes, add a newline character "\n" to the "output"
-     unless it's the last iteration of the outer loop
-    */
-    output += i === n ? "" : "\n";
+  // Start a loop from the second row (i = 2) up to the 'n' rows
+  for (let i = 2; i <= n; ++i) {
+    // Add a newline character to separate rows, then '1', followed by 'i-1' asterisks ('*'), and 'i'
+    output += "\n1" + Array(i).join("*") + i;
   }
 
-  // Return the final "output" string, which contains the pattern
+  // Return the generated pattern as a string
   return output;
 }
 
@@ -57,13 +47,14 @@ function pattern(n) {
 console.log(pattern(3)); // Output the pattern for n = 3
 console.log(pattern(10)); // Output the pattern for n = 10
 
+/**Summary */
+
 /**
- * The code defines a function called "pattern" that takes a single parameter "n," representing the number of rows in the pattern.
- * It initializes an empty string variable called "output" to store the pattern to be generated.
- * The code then uses nested loops: an outer loop (controlled by the variable "i") iterates from 1 to "n" to determine the number of rows in the pattern,
- * while an inner loop (controlled by the variable "j") iterates from 1 to "i" to determine the number of characters in each row.
- * Inside the inner loop, conditional statements are used to decide whether to add "1" or asterisks followed by the current row number (i) to the "output" string.
- * After each inner loop completes for a row, a newline character ("\n") is added to "output" unless it's the last row.
- * Finally, the function returns the "output" string, which contains the complete pattern.
- * Test examples are provided to demonstrate the function's functionality.
+ * The function generates a pattern with 'n' rows, where 'n' is a positive integer.
+ * If 'n' is less than 1, it returns an empty string.
+ * The pattern consists of rows, each starting with '1' and followed by asterisks ('*') increasing
+ * in count by one, and then ending with the row number.
+ * For example, the first row is '1', the second row is '1*2', the third row is '1**3', and so on.
+ * The function uses a loop to construct each row and joins them with newline characters ('\n').
+ * The generated pattern is returned as a string.
  */
